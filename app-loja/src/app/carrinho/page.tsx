@@ -3,8 +3,13 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ListagemCarrinho from "../components/ListagemCarrinho";
 import ResumoCarrinho from "../components/ResumoCarrinho";
+import {mockItensCarrinho} from "../mocks/carrinho";
 
 export default function Carrinho() {
+  let valorTotal = 0;
+  mockItensCarrinho.forEach((item) => {
+    valorTotal += item.preco;
+  })
   return (
     <>
       <main>
@@ -19,7 +24,7 @@ export default function Carrinho() {
             </div>
           </div>
 
-          <ResumoCarrinho />
+          <ResumoCarrinho quantidadeTotal={mockItensCarrinho.length} valorTotal={valorTotal} />
         </div>
       </main>
     </>

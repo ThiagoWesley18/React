@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ItemCarrinho from "./ItemCarrinho";
+import {mockItensCarrinho} from "../mocks/carrinho";
 
 export default function ListagemCarrinho() {
     return (
@@ -16,7 +17,13 @@ export default function ListagemCarrinho() {
                 </tr>
                 </thead>
                 <tbody>
-                    <ItemCarrinho />
+                    {
+                        mockItensCarrinho.map((item) => {
+                            return  (
+                                <ItemCarrinho key={item.id} id={item.id} nome={item.nome} preco={item.preco} quantidade={item.quantidade} />
+                            );
+                        })
+                    }
                 </tbody>
             </table>
         </div>

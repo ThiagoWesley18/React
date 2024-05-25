@@ -3,7 +3,6 @@ import Image from "next/image";
 import React from "react";
 
 interface CardProdutoProps {
-    key: string;
     fotos: { titulo: string; src: string };
     nome: string;
     preco: string;
@@ -11,7 +10,7 @@ interface CardProdutoProps {
 
 }
 
-export default function CardProduto({key, fotos, nome, preco, descricao}: CardProdutoProps){
+export default function CardProduto({fotos, nome, preco, descricao}: CardProdutoProps){
     return (
             <div className="col">
                 <div className="card shadow-sm h-100">
