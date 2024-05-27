@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 
 interface ResumoCarrinhoProps {
-    quantidadeTotal: number;
+    quantidadeTotal : number;
     valorTotal: number;
 }
 

@@ -8,8 +8,10 @@ import {mockItensCarrinho} from "../mocks/carrinho";
 export default function Carrinho() {
   let valorTotal = 0;
   mockItensCarrinho.forEach((item) => {
-    valorTotal += item.preco;
+    valorTotal += item.preco * item.quantidade;
   })
+
+  
   return (
     <>
       <main>
@@ -19,7 +21,7 @@ export default function Carrinho() {
               <h5 className="card-title mb-4 fw-light">
                 Produtos selecionados
               </h5>
-              <ListagemCarrinho />
+              <ListagemCarrinho produto={mockItensCarrinho}/>
               
             </div>
           </div>

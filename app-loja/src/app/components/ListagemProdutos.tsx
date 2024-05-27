@@ -1,14 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import CardProduto from "./CardProduto";
-import {mockProdutos} from "../mocks/produtos";
-export default function ListagemProdutos() {
+import Produto from "../types/produto";
+
+interface ListaProdutosProps {
+    produtos: Produto[];
+    adicionarAoCarrinho: (produto: Produto) => void;
+}
+
+export default function ListagemProdutos({produtos, adicionarAoCarrinho}: ListaProdutosProps) {
     return (
         <div>
-            
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-                {mockProdutos.map((item) => {
-                    return <CardProduto key={item.id} fotos={item.fotos[0]} nome={item.nome} preco={item.preco} descricao={item.descricao} />;
+                {produtos.map((item) => {
+                    return <CardProduto key={item.id} itemProduto={item} adicionarAoCarrinho={adicionarAoCarrinho}/>;
                 })}
                 
             </div>

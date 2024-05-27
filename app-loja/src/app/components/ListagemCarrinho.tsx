@@ -1,9 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ItemCarrinho from "./ItemCarrinho";
-import {mockItensCarrinho} from "../mocks/carrinho";
+import Carrinho from "../types/carrinho";
 
-export default function ListagemCarrinho() {
+interface ListagemCarrinhoProps {
+    produto: Carrinho[];
+}
+
+
+export default function ListagemCarrinho({produto}: ListagemCarrinhoProps) {
     return (
         <div className="table-responsive">
             <table className="table ">
@@ -18,7 +23,7 @@ export default function ListagemCarrinho() {
                 </thead>
                 <tbody>
                     {
-                        mockItensCarrinho.map((item) => {
+                        produto.map((item) => {
                             return  (
                                 <ItemCarrinho key={item.id} id={item.id} nome={item.nome} preco={item.preco} quantidade={item.quantidade} />
                             );

@@ -1,32 +1,31 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
 import React from "react";
+import Produto from "../types/produto";
 
 interface CardProdutoProps {
-    fotos: { titulo: string; src: string };
-    nome: string;
-    preco: string;
-    descricao: string;
+    itemProduto: Produto;
+    adicionarAoCarrinho: (produto: Produto) => void;
 
 }
 
-export default function CardProduto({fotos, nome, preco, descricao}: CardProdutoProps){
+export default function CardProduto({itemProduto, adicionarAoCarrinho}: CardProdutoProps){
     return (
             <div className="col">
                 <div className="card shadow-sm h-100">
                     <Image
-                        src={fotos.src}
+                        src={itemProduto.fotos[0].src}
                         className="card-img-top"
-                        alt={fotos.titulo}
+                        alt={itemProduto.fotos[0].titulo}
                         width={300}
                         height={320}
                     />
 
                     <div className="card-body bg-light">
-                        <h5 className="card-title">{nome}</h5>
-                        <p className="card-text text-secondary">R$ {preco}</p>
-                        <p className="card-text text-secondary">{descricao}</p>
-                        <button className="btn btn-dark d-block w-100" type="button">
+                        <h5 className="card-title">{itemProduto.nome}</h5>
+                        <p className="card-text text-secondary">R$ {itemProduto.preco}</p>
+                        <p className="card-text text-secondary">{itemProduto.descricao}</p>
+                        <button className="btn btn-dark d-block w-100" type="button" onClick={()=>adicionarAoCarrinho(itemProduto)} >
                         Adicionar no carrinho
                         </button>
                     </div>
