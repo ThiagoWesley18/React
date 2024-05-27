@@ -6,9 +6,10 @@ interface ItemCarrinhoProps {
     nome: string;
     preco: number;
     quantidade: number;
+    removerItemDoCarrinhoProps: (id: string)=> void;
 }
 
-export default function ItemCarrinho({ id, nome, preco, quantidade }: ItemCarrinhoProps) {
+export default function ItemCarrinho({ id, nome, preco, quantidade, removerItemDoCarrinhoProps }: ItemCarrinhoProps) {
     const valorTotalProduto = (precoUnitario: number, quantidade: number): number => precoUnitario * quantidade;
     return (
         <tr key={id}>
@@ -18,7 +19,7 @@ export default function ItemCarrinho({ id, nome, preco, quantidade }: ItemCarrin
 
             <td>R$ {valorTotalProduto(preco, quantidade).toFixed(2)}</td>
             <td>
-            <button className="btn btn-danger btn-sm">
+            <button className="btn btn-danger btn-sm" onClick={()=>removerItemDoCarrinhoProps(id)}>
                 Remover
             </button>
             </td>
