@@ -19,6 +19,11 @@ export default function Carrinho() {
     valorTotal += item.preco * item.quantidade;
   })
 
+  let quantidadeTotal = 0;
+  (itensCarrinho ? itensCarrinho : []).forEach((item) => {
+    quantidadeTotal += item.quantidade;
+  })
+
   
   return (
     <>
@@ -34,7 +39,7 @@ export default function Carrinho() {
             </div>
           </div>
 
-          <ResumoCarrinho quantidadeTotal={(itensCarrinho ? itensCarrinho : []).length} valorTotal={valorTotal} />
+          <ResumoCarrinho quantidadeTotal={quantidadeTotal} valorTotal={valorTotal} />
         </div>
       </main>
     </>
