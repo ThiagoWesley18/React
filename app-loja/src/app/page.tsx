@@ -20,7 +20,7 @@ export default function Produtos() {
     );
   }
 
-  const {produto, isPending, isError} = useListaProdutos();
+  const {produto, isPending, isError } = useListaProdutos();
   if (isPending) {
     return <div>Carregando...</div>
   }
@@ -49,6 +49,5 @@ export default function Produtos() {
       );
     }
   }
- 
   
 }

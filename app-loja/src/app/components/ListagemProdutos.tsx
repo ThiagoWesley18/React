@@ -12,9 +12,11 @@ export default function ListagemProdutos({produtos, adicionarAoCarrinhoProps}: L
     return (
         <div>
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-                {produtos.map((item) => {
+            {
+                produtos.length > 0 ? produtos.map((item) => {
                     return <CardProduto key={item.id} itemProduto={item} adicionarAoCarrinho={adicionarAoCarrinhoProps}/>;
-                })}
+                }) : null
+            }
                 
             </div>
         </div>
