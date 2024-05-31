@@ -1,46 +1,30 @@
 "use client";
 import Image from "next/image";
-import Produtos from "../../types/produto";
 import { useParams } from "next/navigation"
-import { useEffect, useState } from "react";
 import Cardproduto from "../../components/detalhesProduto";
 import {Foto} from "../../types/produto";
+import {useDetalhesProdutos} from "../../hooks/useDetalhesProduto";
 
 const Produto = () => {
-    const [produto, setProduto] = useState<Produtos | null>(null);
     const parans = useParams();
     const nomeProduto = parans.produto;
 
-    useEffect(() => {
-        let ignore = false;
-        const fetchData = async () => {
-            try{
-                const response = await fetch(`https://ranekapi.origamid.dev/json/api/produto/${nomeProduto}`);
-                if(!ignore && response.ok){
-                    const data = await response.json();
-                    setProduto(data);
-                }
-            }catch(error){
-                console.log(error);
-            }
-        }
-        fetchData(); 
-        return () => {
-            ignore = true;
-        }
-    },[nomeProduto]);
+    const {produto: produtoDetalhes, isPending, isError} = useDetalhesProdutos(nomeProduto);
 
-    if (!produto){
-        return (
-            <Cardproduto  />
-        );
-    }else{
+    if(produtoDetalhes){
+        if(produtoDetalhes.nome == null){
+            return (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontWeight: 'bold', fontSize:"20px" }} >
+                    Produto não encontrado!
+                </div>
+            );
+        }else{
         return (
             <div className="container p-5">
                 <div className="card mb-4">
                     <div className="card-img-top" >
                         {
-                            (produto.fotos ? produto.fotos : []).map((fotoItem) => {
+                            (produtoDetalhes.fotos ? produtoDetalhes.fotos : []).map((fotoItem) => {
                                 return <Imagens foto={fotoItem} key={fotoItem.titulo} />;
                             })
                         }
@@ -50,17 +34,26 @@ const Produto = () => {
                     <div className="card-body">
                         <h5 className="card-title mb-4 fw-light">Detalhes do produto</h5>
             
-                        <h5 className="card-title mb-4 fw-bold">{produto.nome}</h5>
+                        <h5 className="card-title mb-4 fw-bold">{produtoDetalhes.nome}</h5>
             
                         <p className="card-text fw-medium">
-                        Valor: R${Number(produto.preco).toFixed(2)}
+                        Valor: R${Number(produtoDetalhes.preco).toFixed(2)}
                         </p>
-                        <p className="card-text fw-medium">Descrição: {produto.descricao}</p>
-                        <p className="card-text fw-medium">Anunciado por:{produto.usuario_id}</p>
+                        <p className="card-text fw-medium">Descrição: {produtoDetalhes.descricao}</p>
+                        <p className="card-text fw-medium">Anunciado por:{produtoDetalhes.usuario_id}</p>
                     </div>
                 </div>
             </div>
-          );
+        );
+    }
+    }
+
+    if (isPending) {
+        return <Cardproduto />;
+    }
+
+    if (isError) {
+        return <div>Erro ao carregar os produtos</div>
     }
 
 };
