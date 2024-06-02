@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { Dispatch } from "react";
 import ItemCarrinho from "./ItemCarrinho";
 import Carrinho from "../types/carrinho";
+import { Action } from "../types/carrinho";
 
 interface ListagemCarrinhoProps {
     produto: Carrinho[];
-    removerItemDoCarrinhoProps: (id: string)=> void;
+    removerItemDoCarrinhoProps: Dispatch<Action>;
 }
 
 
@@ -32,7 +33,7 @@ export default function ListagemCarrinho({produto,removerItemDoCarrinhoProps}: L
                                     nome={item.nome} 
                                     preco={item.preco} 
                                     quantidade={item.quantidade} 
-                                    removerItemDoCarrinhoProps={removerItemDoCarrinhoProps}
+                                    açoesItemDoCarrinhoProps={removerItemDoCarrinhoProps}
                                 />
                             );
                         })

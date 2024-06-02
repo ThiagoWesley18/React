@@ -6,3 +6,10 @@ export default interface ItemCarrinho {
     preco: number;
     quantidade: number;
   }
+
+  export type State = {
+    itensCarrinho: ItemCarrinho[];
+  }
+  export type Action = { type: "aumentar_qtd"; id: string} | { type: "diminuir_qtd"; id: string} | { type: "remover"; id: string};
+
+  
