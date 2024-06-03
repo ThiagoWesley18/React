@@ -1,7 +1,7 @@
 import CardProduto from "../CardProduto/CardProduto";
 import ResumoFavoritos from "../ResumoFavoritos/ResumoFavoritos";
 import { useContext } from "react";
-import { favoritosContext } from "../../page";
+import { favoritosContext } from "../../state/favoritosPrivider";
 
 
 

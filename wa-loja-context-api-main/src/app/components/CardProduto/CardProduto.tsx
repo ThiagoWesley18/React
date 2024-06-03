@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useContext } from "react";
-import { favoritosContext } from "../../page";
+import { favoritosContext } from "../../state/favoritosPrivider";
 
 interface CardProdutoProps {
   produto: Produto;
