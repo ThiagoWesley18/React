@@ -1,5 +1,5 @@
+"use client";
 import React, { createContext, Dispatch, useState } from "react";
-import { mockProdutos } from "../mocks/produtos";
 
 interface IfavoritosContext {
     favorito: Produto[];
@@ -12,7 +12,6 @@ interface IfavoritosContext {
   });
 
  const FavoritosProvider = ({ children }: { children: React.ReactNode }) => {
-    const produto = mockProdutos;
     const [favorito, setFavoritos] = useState<Produto[]>([]);
 
     const values = {

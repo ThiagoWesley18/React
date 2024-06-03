@@ -12,7 +12,7 @@ interface IListagemProdutos {
 export default function ListagemProdutos({
   produtos,
 }: IListagemProdutos) {
-  const { favorito, setFavoritos } = useContext(favoritosContext);
+  const { favorito} = useContext(favoritosContext);
   return (
     <>
       <h5 className="mb-3">Produtos disponíveis:</h5>
@@ -26,7 +26,7 @@ export default function ListagemProdutos({
         ))}
       </div>
 
-      <ResumoFavoritos favoritos={favorito} setFavoritos={setFavoritos} />
+      <ResumoFavoritos favoritos={favorito} />
     </>
   );
 }

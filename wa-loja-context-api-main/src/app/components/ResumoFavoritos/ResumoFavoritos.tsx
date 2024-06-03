@@ -1,13 +1,12 @@
+
 import CardProduto from "../CardProduto/CardProduto";
 
 interface ResumoCarrinhoProps {
   favoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
 }
 
 export default function ResumoFavoritos({
-  favoritos,
-  setFavoritos,
+  favoritos
 }: ResumoCarrinhoProps) {
   return (
     <div className="mt-4">
@@ -18,8 +17,7 @@ export default function ResumoFavoritos({
           <CardProduto
             key={produto.id}
             produto={produto}
-            favoritos={favoritos}
-            setFavoritos={setFavoritos}
+            
           />
         ))}
       </div>

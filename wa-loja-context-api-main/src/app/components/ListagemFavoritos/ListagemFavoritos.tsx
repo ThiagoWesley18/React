@@ -1,14 +1,11 @@
 import ItemFavorito from "../ItemFavorito/ItemFavorito";
+import { favoritosContext } from "../../state/favoritosPrivider";
+import { useContext } from "react";
 
-interface IListagemFavoritosProps {
-  produtosFavoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
-}
 
-export default function ListagemFavoritos({
-  produtosFavoritos,
-  setFavoritos,
-}: IListagemFavoritosProps) {
+
+export default function ListagemFavoritos() {
+  const { favorito , setFavoritos} = useContext(favoritosContext);
   return (
     <div className="card mb-4">
       <div className="row card-body">
@@ -23,7 +20,7 @@ export default function ListagemFavoritos({
               </tr>
             </thead>
             <tbody>
-              {produtosFavoritos.map((item) => (
+              {favorito.map((item) => (
                 <ItemFavorito
                   key={item.id}
                   itemFavorito={item}
