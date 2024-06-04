@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BootstrapClient from "./components/BootstrapClient";
 import Navbar from "./components/Navbar/Navbar";
-import FavoritosProvider from "./state/favoritosPrivider";
+import FavoritosProvider from "./state/favoritosProvider";
 
 export const metadata: Metadata = {
   title: "WA Loja",

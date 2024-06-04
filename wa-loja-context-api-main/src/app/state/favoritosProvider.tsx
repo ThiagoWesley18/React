@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, Dispatch, useState } from "react";
+import React, { createContext, Dispatch, useState, useContext } from "react";
 
 interface IfavoritosContext {
     favorito: Produto[];
@@ -27,3 +27,18 @@ interface IfavoritosContext {
 }
 
 export default FavoritosProvider;
+
+export const useFavoritosContext = () =>{
+    const contextFavorito = useContext(favoritosContext );
+    return contextFavorito;
+}
+
+export const useProdutosFavoritos = () => {
+    const { favorito } = useFavoritosContext();
+    return favorito;
+}
+
+export const useVerificaProdutoFavorito = (id:String) =>{
+    const { favorito } = useFavoritosContext();
+    return favorito.some((item) => item.id === id);
+} 

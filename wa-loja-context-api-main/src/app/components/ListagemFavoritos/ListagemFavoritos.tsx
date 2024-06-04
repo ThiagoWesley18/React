@@ -1,11 +1,10 @@
 import ItemFavorito from "../ItemFavorito/ItemFavorito";
-import { favoritosContext } from "../../state/favoritosPrivider";
-import { useContext } from "react";
+import { useFavoritosContext } from "../../state/favoritosProvider";
 
 
 
 export default function ListagemFavoritos() {
-  const { favorito , setFavoritos} = useContext(favoritosContext);
+  const { favorito , setFavoritos} = useFavoritosContext();
   return (
     <div className="card mb-4">
       <div className="row card-body">

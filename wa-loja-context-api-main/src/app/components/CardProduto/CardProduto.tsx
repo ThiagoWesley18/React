@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useContext } from "react";
-import { favoritosContext } from "../../state/favoritosPrivider";
+import { useFavoritosContext, useVerificaProdutoFavorito  } from "../../state/favoritosProvider";
 
 interface CardProdutoProps {
   produto: Produto;
@@ -9,13 +9,13 @@ interface CardProdutoProps {
 export default function CardProduto({
   produto
 }: CardProdutoProps) {
-  const { favorito, setFavoritos } = useContext(favoritosContext);
+  const { setFavoritos } = useFavoritosContext();
 
   const adicionarAosFavoritos = (produto: Produto) => {
     setFavoritos((favoritos) => [...favoritos, produto]);
   };
 
-  const ehFavorito = favorito.some((item) => item.id === produto.id);
+  const ehFavorito = useVerificaProdutoFavorito(produto.id);
 
   return (
     <div className="col">
